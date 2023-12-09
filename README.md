@@ -1,28 +1,60 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/9mnQ_sJq)
-# lab04-BenchmarkingAstar
+# BenchmarkingAstar
 
-Код лабораторной нужно писать в Jupyter Notebook, при этом заготовки нет (имеет смысл пользоваться тем, что вы сдедали в рамках 2-й и 3-й лабы).
+The main purpose of this notebook
+is to conduct massive comparative tests of different versions of A* algorithm,
+solving a planning problem on an 8-connected grid with no corner-cutting
 
-Основная цель лабы - научиться проводить массовые сравнительные тесты алгоритмов эвристического поиска и представлять (и описывать) результаты.
+## Algorithm
 
-Для этой лабы необходимо провести тестирование различных версий A* для задачи планирования **на 8-связном гриде без срезания углов**.
+Version of the heuristic search algorithm - basic algorithm + heuristics + tie-breaking
 
-1.1. Версия A* = A* + эвристика + (опциально) tie-breaking.
+* algorithm - classic A*
+* heuristics - choosing an estimate of the distance to the goal, in this notebook - Euclidean distance, octile distance, chebyshev distance and manhattan distance
+* tie-breaking - a way to select the next node to open if the heuristic value is equal
 
-1.2. Эвристики для тестирования: Эвклид, Диагональная (Octile distance), Чебышев, Манхэттен (недопустимая эвристика для 8-связного случая).
+## Dataset
 
-Для тестирования необходимо использовать коллекцию данных MovingAI (https://movingai.com/benchmarks/grids.html).
+Benchmarking was held on the [MovingAI](https://movingai.com/benchmarks/grids.html) data collection
 
-2.1. В тестирование должно быть включено не менее 3 карт из различных коллекций (3 карты с визуально различной топологией).
+The testing included 3 maps from different collections with visually different topologies,
+100 tasks of varying difficulty were used for each map
 
-2.2. Для каждой карты должно быть использовано не менее 100 заданий различной сложности
+#### Room grid
+![](./images/16room_009.png)
 
-2.3. Для лучшего понимания устройства коллекции MovinaAI рекомендуется ознакомиться со статьей (ссылка есть на сайте)
+#### New York city map
+![](./images/NewYork_1_512.png)
 
-Должны (как минимум) отслеживаться следующие индикаторы эффективности: успешность решения задания (алгоритм нашел кратчайший путь или нет), число раскрытий, время работы алгоритма.
+#### Random maze map
+![](./images/random512-10-8.png)
 
-3.1. Необходимо представить результаты экспериментов в аггрегированном виде (в виде графиков и/или таблиц). Важно представлять не только усредненные значения, но и показатели разброса.
 
-3.2. Тетрадка должна содержать текстовую ячейку с объяснением experimental setup (какие карты и задания вы выбрали, почему, какие индикаторы отслеживались, как читать таблицы/графики) и анализом трендов.
+## Efficiency metrics 
 
-PS: Чем более наглядные картинки и описание - тем лучше!
+The following performance indicators were monitored: 
+the success of solving the task (has the algorithm found the shortest path or not),
+the number of vertices expansions
+and the operating time of the algorithm
+
+## Results
+
+Some result are presented in the following grahics
+
+#### Correctness
+![](correctness.jpg)
+
+#### Expansions count
+![](expansions_box_n_whiskers.jpg)
+![](expansions_grapic.jpg)
+
+#### Steps count
+![](steps_box_n_whiskers.jpg)
+![](steps_grapic.jpg)
+
+## Conclusion
+
+The Astar algorithm works as expected:
+
+- manhattan version doesn't find the optimal path, though it works much faster than the other three
+- all of the euclidean, chebyshev and octile versions always find the path with optimal length
+- octile version is slightly better than the chebyshev one, and chebyshev is better than euclidean in both steps count and expansions count
