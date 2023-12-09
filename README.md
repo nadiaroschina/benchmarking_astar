@@ -41,20 +41,20 @@ and the operating time of the algorithm
 Some result are presented in the following grahics
 
 #### Correctness
-![](correctness.jpg)
+![](./results/correctness.jpg)
 
 #### Expansions count
-![](expansions_box_n_whiskers.jpg)
-![](expansions_grapic.jpg)
+![](./results/expansions_box_n_whiskers.jpg)
+![](./results/expansions_grapic.jpg)
 
 #### Steps count
-![](steps_box_n_whiskers.jpg)
-![](steps_grapic.jpg)
+![](./results/steps_box_n_whiskers.jpg)
+![](./results/steps_grapic.jpg)
 
 ## Conclusion
 
 The Astar algorithm works as expected:
 
-- manhattan version doesn't find the optimal path, though it works much faster than the other three
-- all of the euclidean, chebyshev and octile versions always find the path with optimal length
-- octile version is slightly better than the chebyshev one, and chebyshev is better than euclidean in both steps count and expansions count
+* manhattan version doesn't find the optimal path, though it works much faster than the other three
+* all of the euclidean, chebyshev and octile versions always find the path with optimal length
+* octile version is slightly better than the chebyshev one, and chebyshev is better than euclidean in both steps count and expansions count
